@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class ExchangeInfoEntry {
 
@@ -149,5 +150,18 @@ public class ExchangeInfoEntry {
                 .append("quantityPrecision", quantityPrecision).append("baseAssetPrecision", baseAssetPrecision)
                 .append("quotePrecision", quotePrecision).append("orderTypes", orderTypes)
                 .append("timeInForce", timeInForce).append("filters", filters).toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ExchangeInfoEntry that = (ExchangeInfoEntry) o;
+        return Objects.equals(symbol, that.symbol) && Objects.equals(status, that.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(symbol, status);
     }
 }
